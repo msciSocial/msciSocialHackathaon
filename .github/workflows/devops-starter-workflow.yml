@@ -12,8 +12,8 @@ env:
   REGISTRYSKU: "Standard"
   REGISTRYNAME: "acrsocialhackathon"
   REGISTRYLOCATION: "Central US"
-  EXISTINGCLUSTERID: "/subscriptions/045e8eae-0fca-42d7-bbb9-637ccbf78002/resourcegroups/SHILPA_RG/providers/Microsoft.ContainerService/managedClusters/aks_socials_hackathon"
-  EXISTINGCLUSTERNAME: "aks_socials_hackathon"
+  EXISTINGCLUSTERID: "/subscriptions/045e8eae-0fca-42d7-bbb9-637ccbf78002/resourcegroups/SHILPA_RG/providers/Microsoft.ContainerService/managedClusters/aks-socials"
+  EXISTINGCLUSTERNAME: "aks-socials"
   APPINSIGHTSLOCATION: "Central US"
   HTTPSAPPLICATIONROUTINGENABLED: false
   KUBERNETESAPI: "apps/v1"
