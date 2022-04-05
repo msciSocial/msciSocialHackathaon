@@ -6,18 +6,17 @@ on:
 
 env:
   RESOURCEGROUPNAME: "msciSocialHackathaon-rg"
-  EXISTINGRESOURCEGROUPNAME: "SHILPA_RG"
   SUBSCRIPTIONID: "045e8eae-0fca-42d7-bbb9-637ccbf78002"
-  IMAGENAME: "mscisocialhackathaon1e5c"
+  IMAGENAME: "mscisocialimage"
   REGISTRYSKU: "Standard"
   REGISTRYNAME: "acrsocialhackathon"
   REGISTRYLOCATION: "Central US"
-  EXISTINGCLUSTERID: "/subscriptions/045e8eae-0fca-42d7-bbb9-637ccbf78002/resourcegroups/SHILPA_RG/providers/Microsoft.ContainerService/managedClusters/aks-socials"
+  EXISTINGCLUSTERID: "/subscriptions/045e8eae-0fca-42d7-bbb9-637ccbf78002/resourcegroups/msciSocialHackathaon-rg/providers/Microsoft.ContainerService/managedClusters/aks-socials"
   EXISTINGCLUSTERNAME: "aks-socials"
   APPINSIGHTSLOCATION: "Central US"
   HTTPSAPPLICATIONROUTINGENABLED: false
   KUBERNETESAPI: "apps/v1"
-  NAMESPACE: "mscisocialhackathaone404"
+  NAMESPACE: "mscisocial"
 
 jobs:
   build:
@@ -75,7 +74,7 @@ jobs:
     - name: Get AKS Credentials
       id: getContext
       run: |
-          az aks get-credentials --resource-group ${{ env.EXISTINGRESOURCEGROUPNAME }} --name ${{ env.EXISTINGCLUSTERNAME }} --file $GITHUB_WORKSPACE/kubeconfig
+          az aks get-credentials --resource-group ${{ env.RESOURCEGROUPNAME }} --name ${{ env.EXISTINGCLUSTERNAME }} --file $GITHUB_WORKSPACE/kubeconfig
           echo "KUBECONFIG=$GITHUB_WORKSPACE/kubeconfig" >> $GITHUB_ENV
 
     - name: Create namespace
@@ -110,7 +109,7 @@ jobs:
     - name: Get Kubernetes version on the cluster
       id: k8sversion
       run:  |
-        echo "::set-output name=KUBERNETESVERSION::`az aks show --resource-group ${{ env.EXISTINGRESOURCEGROUPNAME }} --name ${{ env.EXISTINGCLUSTERNAME }} | jq .kubernetesVersion`"
+        echo "::set-output name=KUBERNETESVERSION::`az aks show --resource-group ${{ env.RESOURCEGROUPNAME }} --name ${{ env.EXISTINGCLUSTERNAME }} | jq .kubernetesVersion`"
 
     - uses: azure/k8s-bake@v1
       id: bakeManifests
