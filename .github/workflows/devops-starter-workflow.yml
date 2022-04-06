@@ -25,10 +25,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 	- task: Maven@3
-		inputs:
-			javaHomeOption: 'JDKVersion'
-			jdkVersionOption: '1.11'
-			goals: 'package'
+	  inputs:
+		javaHomeOption: 'JDKVersion'
+		jdkVersionOption: '1.11'
+		goals: 'package'
 
     # login to azure
     - name: Login to Azure
