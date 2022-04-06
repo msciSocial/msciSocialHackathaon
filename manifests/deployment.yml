@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: mscisocialmscisocialhackathaon 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mscisocialmscisocialhackathaon
+  template:
+    metadata:
+      labels:
+        app: mscisocialmscisocialhackathaon 
+    spec:
+      containers:
+        - name: mscisocialmscisocialhackathaon 
+          image: acrsocialhackathon.azurecr.io/mscisocialmscisocialhackathaon
+          ports:
+          - containerPort: 8080
