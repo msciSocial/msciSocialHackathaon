@@ -11,6 +11,7 @@
 	<groupId>com.msci</groupId>
 	<artifactId>social</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>social</name>
 	<description>MSCI Social Project</description>
 	<properties>

@@ -2,9 +2,7 @@ FROM mcr.microsoft.com/java/maven:8u192-zulu-debian9 AS build-env
 WORKDIR /app
 COPY . /app
 RUN mvn package
-COPY --from=build-env /app/target/social-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-
-
+FROM tomcat:8
+RUN rm -rf /usr/local/tomcat/webapps/ROOT
+COPY --from=build-env /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
