@@ -1,5 +1,8 @@
-FROM openjdk:8-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-COPY --from=build /home/app/target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM mcr.microsoft.com/java/maven:8u192-zulu-debian9 AS build-env
+WORKDIR /app
+COPY . /app
+RUN mvn package
+
+FROM tomcat:8
+RUN rm -rf /usr/local/tomcat/webapps/ROOT
+COPY --from=build-env /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
